@@ -1,0 +1,8 @@
+create_table("cart_item") {
+  t.Column("id", "integer", {primary: true})
+  t.Column("session_id", "integer", {})
+  t.Column("product_id", "integer", {})
+  t.Column("quantity", "integer", {})
+  t.Column("created_at", "date", {})
+  t.Column("modified_at", "date", {})
+}

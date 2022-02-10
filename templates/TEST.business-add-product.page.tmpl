@@ -1,0 +1,70 @@
+{{template "base" .}}
+
+{{define "content"}}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {{$res := index .Data "reservation"}}
+
+                <h1>Make a Reservation</h1>
+                <p><strong>Reservation Details</strong><br>
+                Room: {{$res.Room.RoomName}}<br>
+                Arrival: {{index .StringMap "start_date"}}<br>
+                Departure: {{index .StringMap "end_date"}}
+                </p>
+
+
+
+                <form action="/make-reservation" method="post" class="" novalidate>
+                    <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+                    <input type="hidden" name="start_date" value="{{index .StringMap "start_date"}}">
+                    <input type="hidden" name="end_date" value="{{index .StringMap "end_date"}}">
+                    <input type="hidden" name="room_id" value="{{$res.RoomID}}">
+
+                    <div class="form-group mt-3">
+                        <label for="name">Name:</label>
+                        {{with .Form.Errors.Get "name"}}
+                            <label class="text-danger">{{.}}</label>
+                        {{end}}
+                        <input class="form-control {{with .Form.Errors.Get "name"}} is-invalid {{end}}"
+                               id="name" autocomplete="off" type='text'
+                               name='name' value="{{$res.Name}}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="desc">Last Name:</label>
+                        {{with .Form.Errors.Get "desc"}}
+                            <label class="text-danger">{{.}}</label>
+                        {{end}}
+                        <input class="form-control {{with .Form.Errors.Get "desc"}} is-invalid {{end}}"
+                               id="desc" autocomplete="off" type='text'
+                               name='desc' value="{{$res.Desc}}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="material">Email:</label>
+                        {{with .Form.Errors.Get "material"}}
+                            <label class="text-danger">{{.}}</label>
+                        {{end}}
+                        <input class="form-control {{with .Form.Errors.Get "material"}} is-invalid {{end}}" id="material"
+                               autocomplete="off" type='material'
+                               name='material' value="{{$res.Material}}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone:</label>
+                        {{with .Form.Errors.Get "phone"}}
+                            <label class="text-danger">{{.}}</label>
+                        {{end}}
+                        <input class="form-control {{with .Form.Errors.Get "phone"}} is-invalid {{end}}" id="phone"
+                               autocomplete="off" type='email'
+                               name='phone' value="{{$res.Phone}}" required>
+                    </div>
+
+                    <hr>
+                    <input type="submit" class="btn btn-primary" value="Make Reservation">
+                </form>
+            </div>
+        </div>
+    </div>
+{{end}}

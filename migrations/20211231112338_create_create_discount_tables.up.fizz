@@ -1,0 +1,13 @@
+create_table("discount") {
+  t.Column("id", "integer", {primary: true})
+  t.Column("name", "string", {"default": ""})
+  t.Column("desc", "string", {"default": ""})
+  t.Column("access_level", "string", {"default": ""})
+  t.Column("select_area", "string", {"default": ""})
+  t.Column("select_name", "string", {"default": ""})
+  t.Column("ban_area", "string", {"default": ""})
+  t.Column("ban_name", "string", {"default": ""})
+  t.Column("discount_percent", "decimal", {})
+  t.Column("created_at", "date", {})
+  t.Column("modified_at", "date", {})
+}

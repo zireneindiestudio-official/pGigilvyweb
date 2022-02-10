@@ -1,0 +1,48 @@
+{{template "base" .}}
+
+{{define "content"}}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {{$res := index .Data "microservicesdb"}}
+
+                <h1>Make a Microservicesdb</h1>
+                <!-- <p><strong>Microservicesdb Details</strong><br>
+                Room: {{$res.Room.RoomName}}<br>
+                Arrival: {{index .StringMap "start_date"}}<br>
+                Departure: {{index .StringMap "end_date"}}
+                </p> -->
+
+
+
+                <form action="/microservices-api" method="post" class="" novalidate>
+                    <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+
+                    <div class="form-group mt-3">
+                        <label for="column_1">First Name:</label>
+                        {{with .Form.Errors.Get "column_1"}}
+                            <label class="text-danger">{{.}}</label>
+                        {{end}}
+                        <input class="form-control {{with .Form.Errors.Get "column_1"}} is-invalid {{end}}"
+                               id="column_1" autocomplete="off" type='text'
+                               name='column_1' value="{{$res.TestingColumna}}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="last_name">Last Name:</label>
+                        {{with .Form.Errors.Get "column_2"}}
+                            <label class="text-danger">{{.}}</label>
+                        {{end}}
+                        <input class="form-control {{with .Form.Errors.Get "column_2"}} is-invalid {{end}}"
+                               id="column_2" autocomplete="off" type='text'
+                               name='column_2' value="{{$res.TestingColumnb}}" required>
+                    </div>
+
+
+                    <hr>
+                    <input type="submit" class="btn btn-primary" value="Make Microservicesdb">
+                </form>
+            </div>
+        </div>
+    </div>
+{{end}}

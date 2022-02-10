@@ -1,0 +1,9 @@
+create_table("payment_details") {
+  t.Column("id", "integer", {primary: true})
+  t.Column("order_id", "integer", {})
+  t.Column("amount", "decimal", {})
+  t.Column("method", "string", {"size": 60})
+  t.Column("status", "integer", {})  
+  t.Column("created_at", "date", {})
+  t.Column("modified_at", "date", {})
+}

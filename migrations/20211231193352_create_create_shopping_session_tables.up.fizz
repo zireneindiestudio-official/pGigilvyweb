@@ -1,0 +1,7 @@
+create_table("shopping_session") {
+  t.Column("id", "integer", {primary: true})
+  t.Column("user_id", "integer", {})
+  t.Column("total", "decimal", {})
+  t.Column("created_at", "date", {})
+  t.Column("modified_at", "date", {})
+}
